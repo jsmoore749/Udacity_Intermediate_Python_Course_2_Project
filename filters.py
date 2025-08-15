@@ -38,6 +38,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -68,11 +69,16 @@ class AttributeFilter:
         """
         raise UnsupportedCriterionError
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
+def __repr__(self):
+    """Return a computer-readable string representation of this filter."""
+    return (
+        f"{self.__class__.__name__}("
+        f"op=operator.{self.op.__name__}, value={self.value})"
+    )
 
 class DateFilter(AttributeFilter):
     """Filter CloseApproach objects by their date."""
+
     @classmethod
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
@@ -80,6 +86,7 @@ class DateFilter(AttributeFilter):
 
 class DistanceFilter(AttributeFilter):
     """Filter CloseApproach objects by nominal distance."""
+
     @classmethod
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
@@ -87,6 +94,7 @@ class DistanceFilter(AttributeFilter):
 
 class VelocityFilter(AttributeFilter):
     """Filter CloseApproach objects by relative velocity."""
+
     @classmethod
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
@@ -94,6 +102,7 @@ class VelocityFilter(AttributeFilter):
 
 class DiameterFilter(AttributeFilter):
     """Filter CloseApproach objects by NEO diameter."""
+
     @classmethod
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
@@ -101,11 +110,11 @@ class DiameterFilter(AttributeFilter):
 
 class HazardousFilter(AttributeFilter):
     """Filter CloseApproach objects by hazardous flag."""
+
     @classmethod
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.neo.hazardous
-
 
 def create_filters(
         date=None, start_date=None, end_date=None,
