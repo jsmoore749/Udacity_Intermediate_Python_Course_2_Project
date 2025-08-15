@@ -103,7 +103,7 @@ class CloseApproach:
         self.distance = info.get('distance')
         self.velocity = info.get('velocity')
         self.neo = None
-    
+
     def serialize(self):
         """Serialize the Close Approach data neatly."""
         return {

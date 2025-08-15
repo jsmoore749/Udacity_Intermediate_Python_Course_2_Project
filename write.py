@@ -28,8 +28,8 @@ def write_to_csv(results, filename):
         'datetime_utc', 'distance_au', 'velocity_km_s',
         'designation', 'name', 'diameter_km', 'potentially_hazardous'
     )
-    with open(filename, 'w', newline = '', encoding = 'utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for approach in results:
             neo = approach.neo
@@ -42,6 +42,7 @@ def write_to_csv(results, filename):
                 'diameter_km': neo.diameter,
                 'potentially_hazardous': neo.hazardous
             })
+
 
 def write_to_json(results, filename):
     """Write an iterable of `CloseApproach` objects to a JSON file.
@@ -68,5 +69,5 @@ def write_to_json(results, filename):
                 'potentially_hazardous': neo.hazardous
             }
         })
-    with open(filename, 'w', encoding = 'utf-8') as jsonfile:
-        json.dump(output, jsonfile, indent = 2)
+    with open(filename, 'w', encoding='utf-8') as jsonfile:
+        json.dump(output, jsonfile, indent=2)

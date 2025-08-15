@@ -69,12 +69,14 @@ class AttributeFilter:
         """
         raise UnsupportedCriterionError
 
+
 def __repr__(self):
     """Return a computer-readable string representation of this filter."""
     return (
         f"{self.__class__.__name__}("
         f"op=operator.{self.op.__name__}, value={self.value})"
     )
+
 
 class DateFilter(AttributeFilter):
     """Filter CloseApproach objects by their date."""
@@ -84,6 +86,7 @@ class DateFilter(AttributeFilter):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.time.date()
 
+
 class DistanceFilter(AttributeFilter):
     """Filter CloseApproach objects by nominal distance."""
 
@@ -91,6 +94,7 @@ class DistanceFilter(AttributeFilter):
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.distance
+
 
 class VelocityFilter(AttributeFilter):
     """Filter CloseApproach objects by relative velocity."""
@@ -100,6 +104,7 @@ class VelocityFilter(AttributeFilter):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.velocity
 
+
 class DiameterFilter(AttributeFilter):
     """Filter CloseApproach objects by NEO diameter."""
 
@@ -108,6 +113,7 @@ class DiameterFilter(AttributeFilter):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.neo.diameter
 
+
 class HazardousFilter(AttributeFilter):
     """Filter CloseApproach objects by hazardous flag."""
 
@@ -115,6 +121,7 @@ class HazardousFilter(AttributeFilter):
     def get(cls, approach):
         """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.neo.hazardous
+
 
 def create_filters(
         date=None, start_date=None, end_date=None,
@@ -156,34 +163,34 @@ def create_filters(
 
     if date is not None:
         filters.append(DateFilter(operator.eq, date))
-    
+
     if start_date is not None:
         filters.append(DateFilter(operator.ge, start_date))
-    
+
     if end_date is not None:
         filters.append(DateFilter(operator.le, end_date))
-    
+
     if distance_min is not None:
         filters.append(DistanceFilter(operator.ge, distance_min))
-    
+
     if distance_max is not None:
         filters.append(DistanceFilter(operator.le, distance_max))
-    
+
     if velocity_min is not None:
         filters.append(VelocityFilter(operator.ge, velocity_min))
-    
+
     if velocity_max is not None:
         filters.append(VelocityFilter(operator.le, velocity_max))
 
     if diameter_min is not None:
         filters.append(DiameterFilter(operator.ge, diameter_min))
-    
+
     if diameter_max is not None:
         filters.append(DiameterFilter(operator.le, diameter_max))
 
     if hazardous is not None:
         filters.append(HazardousFilter(operator.eq, hazardous))
-    
+
     return filters
 
 

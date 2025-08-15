@@ -31,12 +31,12 @@ def load_neos(neo_csv_path):
         for row in reader:
             try:
                 neo = NearEarthObject(
-                    designation = row['pdes'],
-                    name = row['name'] or None,
-                    diameter = float(row["diameter"]) 
-                    if row['diameter'] 
+                    designation=row['pdes'],
+                    name=row['name'] or None,
+                    diameter=float(row["diameter"])
+                    if row['diameter']
                     else None,
-                    hazardous = row['pha'] not in ('', 'N')
+                    hazardous=row['pha'] not in ('', 'N')
                 )
                 neos.append(neo)
             except Exception as e:
@@ -61,13 +61,12 @@ def load_approaches(cad_json_path):
             for row in data:
                 try:
                     record = dict(zip(fields, row))
-                    
                     close_approaches.append(
                         CloseApproach(
-                            designation = record.get('des'),
-                            time = record.get('cd'),
-                            distance = float(record['dist']),
-                            velocity = float(record['v_rel'])
+                            designation=record.get('des'),
+                            time=record.get('cd'),
+                            distance=float(record['dist']),
+                            velocity=float(record['v_rel'])
                         )
                     )
                 except Exception as e:
