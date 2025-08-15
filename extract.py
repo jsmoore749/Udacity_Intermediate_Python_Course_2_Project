@@ -33,7 +33,9 @@ def load_neos(neo_csv_path):
                 neo = NearEarthObject(
                     designation = row['pdes'],
                     name = row['name'] or None,
-                    diameter = float(row["diameter"]) if row['diameter'] else None,
+                    diameter = float(row["diameter"]) 
+                    if row['diameter'] 
+                    else None,
                     hazardous = row['pha'] not in ('', 'N')
                 )
                 neos.append(neo)

@@ -72,30 +72,38 @@ class AttributeFilter:
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 class DateFilter(AttributeFilter):
+    """Filter CloseApproach objects by their date."""
     @classmethod
     def get(cls, approach):
+        """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.time.date()
 
 class DistanceFilter(AttributeFilter):
+    """Filter CloseApproach objects by nominal distance."""
     @classmethod
     def get(cls, approach):
+        """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.distance
 
 class VelocityFilter(AttributeFilter):
+    """Filter CloseApproach objects by relative velocity."""
     @classmethod
     def get(cls, approach):
+        """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.velocity
 
 class DiameterFilter(AttributeFilter):
+    """Filter CloseApproach objects by NEO diameter."""
     @classmethod
     def get(cls, approach):
-        # diameter is on the associated NEO
+        """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.neo.diameter
 
 class HazardousFilter(AttributeFilter):
+    """Filter CloseApproach objects by hazardous flag."""
     @classmethod
     def get(cls, approach):
-        # hazardous flag is on the associated NEO
+        """Return the attribute value from a CloseApproach relevant to this filter."""
         return approach.neo.hazardous
 
 
