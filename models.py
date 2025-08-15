@@ -69,6 +69,7 @@ class NearEarthObject:
         return (
             f"A NearEarthObject {self.fullname} has a diameter of "
             f"{self.diameter:.3f} km and {haz_stat} potentially hazardous."
+        )
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
@@ -132,8 +133,9 @@ class CloseApproach:
         """Return `str(self)`."""
 
         return (
-            f"At {self.time}, {self.name} approaches Earth at a distance of "
-            f"{self.distance:.2f} au and a velocity of {self.velocity:.2f} km/s"
+            f"At {self.time}, {self.name} approaches Earth "
+            f"at a distance of {self.distance:.2f} au "
+            f"and a velocity of {self.velocity:.2f} km/s"
         )
 
     def __repr__(self):
